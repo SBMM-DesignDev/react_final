@@ -20,7 +20,7 @@ const Search = () => {
             <br />
                 <input class="input input__zip-code--search" placeholder="Enter Zip Code"></input>
                 <button class="button zip-code__button">
-                    <FontAwesomeIcon fa-magnifying-glass-location className="fa-solid" />
+                    <FontAwesomeIcon icon='fa-magnifying-glass-location' className="fa-solid" />
                 </button>
             </div>
         </>

@@ -9,16 +9,15 @@ const navigate = useNavigate();
         <nav>
             <div className="nav__wrapper">
                 <figure className="img__wrapper--nav">
-                    <img src={logo} alt="company_logo" class="img__company img__company--logo"></img>
+                    <img src={logo} alt="company_logo" className="img__company img__company--logo"></img>
                 </figure>
-                <ul class="nav__link--list">
+                <ul className="nav__link--list">
                    <li className="nav__link">
-                    <Link to="/">
-                        <a  className="
+                    <Link to="/" className="
                     nav__link--anchor
                     link__hover-effect
                     link__hover-effect--black
-                    ">Home</a>
+                    ">Home
                     </Link>
                     </li>
                    

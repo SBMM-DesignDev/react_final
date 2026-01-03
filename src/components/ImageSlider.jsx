@@ -1,9 +1,22 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 
-const ImageSlider = ( { slides } ) => {
+const ImageSlider = ( { slides, interval = 3000 } ) => {
     const [currentIndex, setCurrentIndex] = useState(0);
+
+     const autoSlide = () => {
+        setCurrentIndex((prevIndex) => (prevIndex + 1) % slides.length);
+    }
+
+    useEffect (() => {
+        const slideInterval = setInterval(autoSlide, interval);
+
+        return () => clearInterval(slideInterval);
+
+    }, [currentIndex, interval]);
+
+    console.log(slides)
 
     const sliderStyles = {
         height: "100%",
@@ -15,28 +28,32 @@ const ImageSlider = ( { slides } ) => {
         borderRadius: "10px",
         backgroundPosition: "center",
         backgroundSize: "cover",
-        backgroundImage: `url(${slides[currentIndex].url})`,
+        backgroundImage: `url(${Object.values(slides[currentIndex].url)})`,
     };
     const leftArrowStyle = {
         position: "absolute",
         top: "50%",
         transform: "translate(0, -50%)",
         left: "32px",
-        fontSize: "45px",
+        /*fontSize: "45px",*/
         color: "black",
-        zIndex: "1",
+        /*zIndex: "1",*/
         cursor: "pointer",
-    };
+        
+     };
      const rightArrowStyle = {
         position: "absolute",
         top: "50%",
         transform: "translate(0, -50%)",
         right: "32px",
-        fontSize: "45px",
+        /*fontSize: "45px",*/
         color: "black",
-        zIndex: "1",
+        /*zIndex: "1",*/
         cursor: "pointer",
+         
     };
+
+
 
     const goToPrevious = () => {
         const isFirstSlide = currentIndex === 0;
@@ -44,17 +61,19 @@ const ImageSlider = ( { slides } ) => {
         setCurrentIndex(newIndex);
     };
 
-      const goToNext = () => {
+        const goToNext = () => {
         const isLastSlide = currentIndex === slides.length - 1;
         const newIndex = isLastSlide ? 0 : currentIndex + 1 ;
         setCurrentIndex(newIndex);
     };
 
+   
+
     return (
         <div style={sliderStyles}>
             
-            <div style={leftArrowStyle} onClick={goToPrevious} > <FontAwesomeIcon icon="fa-arrow-left" className='fa-light' /></div>
-            <div style={rightArrowStyle} onClick={goToNext} ><FontAwesomeIcon icon="fa-arrow-right" className='fa-light' /></div>
+            <div style={leftArrowStyle} onClick={ goToPrevious} className="arrow_slide"> <FontAwesomeIcon icon="fa-arrow-left" className='fa-light' /></div>
+            <div style={rightArrowStyle} onClick={goToNext} className="arrow_slide"><FontAwesomeIcon icon="fa-arrow-right" className='fa-light' /></div>
             <div style={slideStyles}> </div>
         </div>
     )

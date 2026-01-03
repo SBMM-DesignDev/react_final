@@ -1,4 +1,5 @@
-import React from 'react'
+import React,{ useState} from 'react'
+import { Link } from 'react-router-dom';
 import ImageSlider from '../components/ImageSlider';
 import Alemeda from '../Assets/alemeda_theatre.jpg';
 import SeatsBlueLights from '../Assets/futuristic_seats_blue_lights.jpg'
@@ -18,7 +19,7 @@ import Tate from '../Assets/tate_theatre.jpg'
 import Camera from '../Assets/rows_seats_camera_light.png'
 
 
-const Home = () => {
+const Home = ( { inputValue, setInputValue }) => {
     const slides = [
         {url:{Alemeda}, title:'Alameda_Theatre'},
         {url:{SeatsBlueLights}, title:'BlackSeatsBlueLights'},
@@ -39,23 +40,36 @@ const Home = () => {
     ]
 
     const containerStyles = {
-        width: "75%",
+        width: "50%",
         height: "400px",
        margin: "0 50px 24px 50px",
-        border: "red 1px solid",
+        /*border: "red 1px solid",*/
         borderRadius: "10px",
- 
-       
-    }
+        margin: "0 auto",
+ }
+
+    const inputChange = (event) => {
+         setInputValue(event.target.value)
+         console.log(inputValue)
+ }
+    
+
+   
 
     return (<div>
         <h1 className="home__header--title">America's leading Movie Directory</h1>
         <p className="home__header--description">Search for your desired movie theatre or movie title:</p>
         <div className="home__header--wrapper-slider-container">
             <div className="home__input--wrapper">
-                <input className="home__input home__header--movie-input" placeholder="Enter Movie Title"></input>
-                <button className="home__btn btn__Enjoy">Enjoy</button><br/>
-                <input className="home__input home__header--zip-input" placeholder="Enter Zip Code"></input>
+                <input 
+                className="home__input home__header--movie-input" 
+                type="text" 
+                onChange={inputChange} 
+                placeholder="Enter Movie Title"></input>
+                <Link to="/2">
+                    <button className="home__btn btn__Enjoy" >Enjoy</button>
+                </Link><br/>
+                <input className="home__input home__header--zip-input" type="number" placeholder="Enter Zip Code"></input>
                 <button className="home__btn btn__zip-search">Find location</button>
             </div>
             <div style={containerStyles}>

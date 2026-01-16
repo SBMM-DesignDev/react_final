@@ -1,42 +1,44 @@
 import React, { useEffect, useState } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import axios from 'axios';
+import { Link, useNavigate } from 'react-router-dom';
 
 const Search = ( { inputValue } ) => {
     const [data, setData] = useState([])
     const [filter, setFilter] = useState('')
+    const [newSearch, setNewSearch] = useState([inputValue])
+    const navigate = useNavigate();
     
-    console.log(filter); 
-    console.log('About to call function')
+   
+    function newQuerySearchPage() {
+       
+        homePageSearch(newSearch);
+    }
+    
      const movieSort = (event) =>  {
-        console.log('Function has started')
-       setFilter(event.target.value)
-       console.log(filter)
+        setFilter(event.target.value)
+        renderMovieSort();
     } 
-        console.log('About to call function')
-     const renderMovieSort = () => {
-        console.log('Function has started')
-       movieSort()
         
-    if (filter === "LATEST") {
-        data.sort((a,b) => b.Year - a.Year);
-     }
-     else if (filter === "EARLIEST") {
-        data.sort((a,b) => a.Year - b.Year);
-     }
-
-
+     const renderMovieSort = () => {
+        if (filter === "EARLIEST") {
+            data.sort((a,b) => b.Year - a.Year);
+        }
+        else if (filter === "LATEST") {
+            data.sort((a,b) => a.Year - b.Year);
+        }
     }
 
     
 
 
-    async function homePageSearch() {
+    async function homePageSearch(searchPageSearch) {
                 if(!inputValue) return;
                 try {
-                const response = await axios.get(`https://omdbapi.com/?apikey=242fafd7&s=${inputValue}`)
-                setData(response.data.Search || []);
-                 console.log(response)
+                const response = await axios.get(`https://omdbapi.com/?apikey=242fafd7&s=${searchPageSearch || inputValue}`)
+                setData(response.data.Search);
+                 console.log(data)
+                
                 } catch (error) {
                     console.error('Error fetching movies:', error);
                     setData([])
@@ -61,19 +63,18 @@ const Search = ( { inputValue } ) => {
                 <h3 className="header__sub-title"> 
                     Search movies, showtimes and theatres near you
                 </h3>
-                <input 
-                className="input input__movie--search"
-                value={inputValue} 
-                onChange={renderMovieSort}
-                  ></input>
-                <a href=""   className="movie__nutton__link"> 
-                <button className="button movie__button">
+                <input className="input input__movie--search"  onChange={(event) => setNewSearch(event.target.value)}>
+                     
+                
+                  </input>
+                
+                <button className="button movie__button" onClick={newQuerySearchPage}>
                     Enjoy!
                 </button>
-               </a> 
+               
             <br />
-                <input className="input input__zip-code--search" placeholder="Enter Zip Code"></input>
-                <button className="button zip-code__button">
+                <input className="input input__zip-code--search" placeholder="Enter Zip Code" disabled></input>
+                <button disabled className="button zip-code__button">
                     <FontAwesomeIcon icon='fa-magnifying-glass-location' className="fa-solid" />
                 </button>
             </div>
@@ -81,18 +82,19 @@ const Search = ( { inputValue } ) => {
                   <div className="keyword">Search for "{inputValue}"</div>
                     <div className="sort">
                         <label >Sort by Year:</label>
-                    <select  onChange={(event) =>  setFilter(event.target.value) }>
-                        <option value="" disabled >Sort</option>
-                        <option value="LATEST">Latest Release</option>
-                        <option value="EARLIEST">Oldest Release</option>
+                        <select  onChange={(event) => movieSort(event) }>
+                            <option defaultValue="Sort" >Sort</option>
+                            <option value="LATEST">Latest Release</option>
+                            <option value="EARLIEST">Oldest Release</option>
 
-                    </select>
+                        </select>
                     </div>
             </div>        
             <div className="movie-container">
                   
               {data.slice(0, 6).map((movie, index) => (
-                <div className="movie-card" key={index}>
+             
+                <div className="movie-card" key={index} onClick={() => navigate("/:imdbID")} >
                 
                     <div className="movie-card__container">
                         <div className="movie-poster">
@@ -107,7 +109,9 @@ const Search = ( { inputValue } ) => {
                         </div>
                     </div>
                 </div>
+          
                 ))}
+                
             </div>
             
             </div>

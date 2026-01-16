@@ -95,7 +95,7 @@ nav {
 .img__wrapper--nav {
     background-color: #121111;
     border-radius: 5px;
-    border: solid rgb(202, 201, 201) 1px;
+    border: solid red 1.75px;
 }
 
 
@@ -106,16 +106,23 @@ HEADER
 */
 .home__header--title {
    text-align: center;
-    font-size: 80px;
-    margin: 56px 0px;
+    font-size: 65px;
+    margin-top: 32px;
+    margin-bottom: 16px;
 }
 
 .home__header--sub-title{
     text-align: center;
-    font-size: 48px;
-    margin: 0 px;
+    font-size: 24px;
+    margin-bottom: 56px;
+}
 
-    
+.home__header--line {
+    border-top: red solid 3px;
+    width: 100%;
+    max-width: 320px;
+    margin-left: 50px;
+    margin-bottom: 16px;
 }
 
 .home__header--sub-title-wrapper {
@@ -277,7 +284,7 @@ HEADER
 
 /*
 
-MOVIES PAGE
+SEARCH PAGE
 
 */
 
@@ -306,9 +313,14 @@ MOVIES PAGE
     display: flex;
     overflow:hidden;
     margin-right: 8px;
+}
+
+
+
+.movie-card__link ::after{
     
     
-   
+    
 }
 
 .movie-container {
@@ -319,6 +331,7 @@ MOVIES PAGE
     flex-wrap: wrap;
     margin: 0 auto;
     margin-right: 150px;
+   
 }
 
 .movie__container--filters {
@@ -435,6 +448,106 @@ MOVIES PAGE
     }
 }
 
+
+/*
+
+MOVIES INFO
+
+*/
+
+.container__movieInfo {
+  padding-top: 16px;
+}
+
+.movie-info__selected {
+  display: flex;
+}
+
+.movieInfo__selected--figure {
+  width: 40%;
+  padding: 16px 32px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.movieInfo__selected--img {
+  max-height: 500px;
+  width: auto;
+  max-width: 100%;
+}
+
+.movieInfo__selected--description {
+  width: 60%;
+  padding: 16px 32px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.movieInfo__selected--top {
+  padding: 0 24px;
+  margin-bottom: 8px;
+  font-size: 32px;
+  color: #242424;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.movieInfo__selected--link {
+  color: #242424
+ 
+}
+
+.fa-arrow-left {
+  font-size: 30px;
+}
+
+.movieInfo__selected--title--top {
+  margin-left: 10px;
+  margin-bottom: 0;
+  
+
+}
+
+.movieInfo__summary {
+  margin-bottom: 16px;
+}
+
+.movieInfo__selected--title {
+  margin-bottom: 8px
+}
+
+.movieInfo__summary--title {
+  margin-bottom: 8px;
+  text-align: left;
+}
+
+.movieInfo__summary--para {
+  margin-bottom: 16px;
+  text-align: left;
+}
+
+.book__price {
+  font-size: 16px;
+  margin: 8px 0 24px 0;
+}
+
+.books__recommended {
+  display: flex;
+  width: 100%;
+  flex-wrap: wrap;
+}
+
+.link__breadcrumbs {
+  color: #bfbfbf;
+  margin-bottom: 16px;
+}
+
+
+
+
 /* 
 
 FOOTER
@@ -444,16 +557,36 @@ FOOTER
 
 footer {
     width: 100%;
+    margin-top: 150px;
     
+}
+
+.footer__line {
+    width: 100%;
+    max-width: 1200px;
+    border-top: solid red 3px;
+    margin: 0 auto;
+    margin-bottom: 36px;
+
 }
 
 .footer__container {
     width: 100%;
-    max-width: 1000px;
+}
+
+.footer__row {
+    width: 100%;
+    max-width: 800px;
     display: flex;
     flex-direction: column;
     margin: 0 auto;
 }
+
+.footer__title {
+    text-align: center;
+    margin-bottom: 36px;
+}
+
 
 .footer__link--list {
     list-style: none;

@@ -2,8 +2,9 @@ import React, { useState } from 'react';
 import { BrowserRouter as Router, Routes, Route} from 'react-router-dom'
 import Home from './pages/Home'
 import Search from './pages/Search'
-import Movie from './pages/Movie'
+import MovieInfo from './pages/MovieInfo'
 import Nav from './components/Nav'
+import Footer from './components/Footer'
 
 function App() {
   const [inputValue, setInputValue] = useState([])
@@ -15,8 +16,9 @@ function App() {
       <Routes>
         <Route path='/' element={<Home inputValue={inputValue} setInputValue={setInputValue} />} ></Route>
         <Route path='/2' element={<Search inputValue={inputValue} />}> </Route>
-        <Route path='/3' element={<Movie />}></Route>
+        <Route path='/:imdbID' element={<MovieInfo />}></Route>
       </Routes>
+      <Footer />
      
     </div>
     </Router>

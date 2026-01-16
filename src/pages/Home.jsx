@@ -1,4 +1,4 @@
-import React,{ useState} from 'react'
+import React from 'react'
 import { Link } from 'react-router-dom';
 import ImageSlider from '../components/ImageSlider';
 import Alemeda from '../Assets/alemeda_theatre.jpg';
@@ -56,9 +56,14 @@ const Home = ( { inputValue, setInputValue }) => {
 
    
 
-    return (<div>
+    return (<>
         <h1 className="home__header--title">America's leading Movie Directory</h1>
+         <div className="home__header--sub-title-wrapper">
+         <h4 className="home__header--sub-title">Make your movie going experience the most enjoyable!!!</h4>
+        </div> 
+        
         <p className="home__header--description">Search for your desired movie theatre or movie title:</p>
+        <div className="home__header--line"></div> 
         <div className="home__header--wrapper-slider-container">
             <div className="home__input--wrapper">
                 <input 
@@ -69,8 +74,8 @@ const Home = ( { inputValue, setInputValue }) => {
                 <Link to="/2">
                     <button className="home__btn btn__Enjoy" >Enjoy</button>
                 </Link><br/>
-                <input className="home__input home__header--zip-input" type="number" placeholder="Enter Zip Code"></input>
-                <button className="home__btn btn__zip-search">Find location</button>
+                <input className="home__input home__header--zip-input" type="number" placeholder="Enter Zip Code" disabled></input>
+                <button className="home__btn btn__zip-search" disabled>Find location</button>
             </div>
             <div style={containerStyles}>
                 
@@ -78,10 +83,8 @@ const Home = ( { inputValue, setInputValue }) => {
             </div>
         </div>
 
-       <div className="home__header--sub-title-wrapper">
-         <h4 className="home__header--sub-title">Make your movie going experience the most enjoyable!!!</h4>
-        </div>     
-    </div>
+         
+    </>
     )
 }
 

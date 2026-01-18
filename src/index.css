@@ -461,6 +461,11 @@ MOVIES INFO
 
 .movie-info__selected {
   display: flex;
+  margin: 100px 0;
+  border: transparent red 3px;
+  border-radius: 5px;
+  outline: solid red 3px;
+  outline-offset: 10px;
 }
 
 .movieInfo__selected--figure {
@@ -475,6 +480,10 @@ MOVIES INFO
   max-height: 500px;
   width: auto;
   max-width: 100%;
+  border-radius: 5px;
+  border: transparent solid 3px;
+  outline: red solid 3px;
+  outline-offset: 2px;
 }
 
 .movieInfo__selected--description {
@@ -516,12 +525,14 @@ MOVIES INFO
 }
 
 .movieInfo__selected--title {
-  margin-bottom: 8px
+  margin-bottom: 8px;
+  font-weight: bold;
 }
 
 .movieInfo__summary--title {
   margin-bottom: 8px;
   text-align: left;
+  font-size: 30px;
 }
 
 .movieInfo__summary--para {
@@ -538,6 +549,12 @@ MOVIES INFO
   display: flex;
   width: 100%;
   flex-wrap: wrap;
+}
+
+.movieInfo__details {
+    list-style-type: none;
+    font-size: 24px;
+    margin-bottom: 20px;
 }
 
 .link__breadcrumbs {

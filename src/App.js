@@ -16,7 +16,7 @@ function App() {
       <Routes>
         <Route path='/' element={<Home inputValue={inputValue} setInputValue={setInputValue} />} ></Route>
         <Route path='/2' element={<Search inputValue={inputValue} />}> </Route>
-        <Route path='/:imdbID' element={<MovieInfo />}></Route>
+        <Route path='/:imdbID' element={<MovieInfo inputValue={inputValue}/>}></Route>
       </Routes>
       <Footer />
      

@@ -17,7 +17,7 @@ const  MovieInfo = () => {
         try {
             const { data } = await axios.get(`https://omdbapi.com/?apikey=242fafd7&i=${imdbID}`)
             setSelectedMovie(data)
-            console.log(selectedMovie)
+            console.log(data)
         }
         catch(error) {
             console.error('Error fetching movies:', error);
@@ -64,27 +64,23 @@ const  MovieInfo = () => {
                     </div>
                     <div className="movie-info__selected">
                         <figure className="movieInfo__selected--figure">
-                            <img src="" alt="" className="movieInfo__selected--img" />
+                            <img src={selectedMovie.Poster} alt="" className="movieInfo__selected--img" />
                         </figure>
                         <div className="movieInfo__selected--description">
                             <h2 className="movieInfo__selected--title">
-                                book.title
+                               {selectedMovie.Title}
                             </h2>
                             
                            
                             <div className="movieInfo__summary">
-                                <div className="movieInfo__summary--title">Summary</div>
-                                <p className="movieInfo__summary--para">
-                                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                                    Provident,tempora magni aliquam iusto modi earum sunt iure blanditiis
-                                    dolore nobis adipisci in voluptatum soluta dolorum nisi aut? Rerum, obcaecati illum?
-                                </p>
-                                <p className="movieInfo__summary--para">
-                                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                                    Provident,tempora magni aliquam iusto modi earum sunt iure blanditiis
-                                    dolore nobis adipisci in voluptatum soluta dolorum nisi aut? Rerum, obcaecati illum?
-                                </p>
-
+                                <div className="movieInfo__summary--title">Movie Info:</div>
+                                <ul className="movieInfo__summary--details">
+                                   <li className="movieInfo__details">Genre: {selectedMovie.Genre} </li>
+                                   <li className="movieInfo__details">Cast: {selectedMovie.Actors} </li>
+                                   <li className="movieInfo__details">Director(s): {selectedMovie.Director} </li>
+                                   <li className="movieInfo__details">Writer(s): {selectedMovie.Writer} </li>
+                                   <li className="movieInfo__details">Rated: {selectedMovie.Rated} </li>
+                                </ul>
                             </div>
                         </div>
                     </div>

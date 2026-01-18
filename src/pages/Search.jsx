@@ -29,15 +29,12 @@ const Search = ( { inputValue } ) => {
         }
     }
 
-    
-
-
-    async function homePageSearch(searchPageSearch) {
+           async function homePageSearch(searchPageSearch) {
                 if(!inputValue) return;
                 try {
                 const response = await axios.get(`https://omdbapi.com/?apikey=242fafd7&s=${searchPageSearch || inputValue}`)
                 setData(response.data.Search);
-                 console.log(data)
+                 console.log(response.data.Search)
                 
                 } catch (error) {
                     console.error('Error fetching movies:', error);
@@ -45,11 +42,8 @@ const Search = ( { inputValue } ) => {
                 }
     }
 
-    
-
     useEffect(() => {
-        
-        homePageSearch();
+         homePageSearch();
         
     }, [inputValue] )
 
@@ -94,7 +88,7 @@ const Search = ( { inputValue } ) => {
                   
               {data.slice(0, 6).map((movie, index) => (
              
-                <div className="movie-card" key={index} onClick={() => navigate("/:imdbID")} >
+                <div className="movie-card" key={index} onClick={() => navigate(`/${movie.imdbID}`)} >
                 
                     <div className="movie-card__container">
                         <div className="movie-poster">

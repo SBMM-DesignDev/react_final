@@ -8,8 +8,9 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 
 
-const  MovieInfo = ( {inputValue} ) => {
+const  MovieInfo = (  ) => {
  
+    const { query } = useParams();
     const { imdbID } = useParams();
     const [selectedMovie, setSelectedMovie] = useState([]);
 
@@ -39,10 +40,10 @@ return (
             <div className="container__movieInfo">
                 <div className="row">
                     <div className="movieInfo__selected--top-links">
-                        <Link to={'/search/'}  className="movieInfo__selected--link">
+                        <Link to={`/search/${query}`}  className="movieInfo__selected--link">
                             <FontAwesomeIcon icon="fa-arrow-left" className='fa-light' />
                         </Link>
-                        <Link to={'/search/'} className="movieInfo__selected--link">
+                        <Link to={`/search/${query}`} className="movieInfo__selected--link">
                             <h2 className="movieInfo__selected--title--top">Search for more Movies</h2>
                         </Link>
                     </div>

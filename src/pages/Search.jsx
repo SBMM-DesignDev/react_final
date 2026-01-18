@@ -89,7 +89,7 @@ const Search = (  ) => {
                   
               {data.slice(0, 6).map((movie, index) => (
              
-                <div className="movie-card" key={index} onClick={() => navigate(`/about-movie/${movie.imdbID}`)} >
+                <div className="movie-card" key={index} onClick={() => navigate(`/about-movie/${movie.imdbID}/query`)} >
                 
                     <div className="movie-card__container">
                         <div className="movie-poster">

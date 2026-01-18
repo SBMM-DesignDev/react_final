@@ -48,10 +48,10 @@ const Home = ( { inputValue, setInputValue }) => {
         margin: "0 auto",
  }
 
-    const inputChange = (event) => {
+   /* const inputChange = (event) => {
          setInputValue(event.target.value)
          console.log(inputValue)
- }
+ }*/
     
 
    
@@ -69,9 +69,9 @@ const Home = ( { inputValue, setInputValue }) => {
                 <input 
                 className="home__input home__header--movie-input" 
                 type="text" 
-                onChange={inputChange} 
+                onChange={(event) => setInputValue(event.target.value) } 
                 placeholder="Enter Movie Title"></input>
-                <Link to="/2">
+                <Link to={`/search/${inputValue}`}>
                     <button className="home__btn btn__Enjoy" >Enjoy</button>
                 </Link><br/>
                 <input className="home__input home__header--zip-input" type="number" placeholder="Enter Zip Code" disabled></input>

@@ -15,8 +15,8 @@ function App() {
       <Nav />
       <Routes>
         <Route path='/' element={<Home inputValue={inputValue} setInputValue={setInputValue} />} ></Route>
-        <Route path='/2' element={<Search inputValue={inputValue} />}> </Route>
-        <Route path='/:imdbID' element={<MovieInfo inputValue={inputValue}/>}></Route>
+        <Route path='/search/:query' element={<Search inputValue={inputValue} />}>{" "} </Route>
+        <Route path='/about-movie/:imdbID' element={<MovieInfo inputValue={inputValue}/>}></Route>
       </Routes>
       <Footer />
      

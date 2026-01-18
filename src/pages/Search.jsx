@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import axios from 'axios';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useNavigate, useParams } from 'react-router-dom';
 
-const Search = ( { inputValue } ) => {
+const Search = (  ) => {
+    const { query: inputValue } = useParams();
     const [data, setData] = useState([])
     const [filter, setFilter] = useState('')
     const [newSearch, setNewSearch] = useState([inputValue])
@@ -88,7 +89,7 @@ const Search = ( { inputValue } ) => {
                   
               {data.slice(0, 6).map((movie, index) => (
              
-                <div className="movie-card" key={index} onClick={() => navigate(`/${movie.imdbID}`)} >
+                <div className="movie-card" key={index} onClick={() => navigate(`/about-movie/${movie.imdbID}`)} >
                 
                     <div className="movie-card__container">
                         <div className="movie-poster">

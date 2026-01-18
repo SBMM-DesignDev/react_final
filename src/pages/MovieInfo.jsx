@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useParams, Link } from 'react-router-dom';
+import { useParams, Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
@@ -8,7 +8,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 
 
-const  MovieInfo = () => {
+const  MovieInfo = ( {inputValue} ) => {
+ 
     const { imdbID } = useParams();
     const [selectedMovie, setSelectedMovie] = useState([]);
 
@@ -29,36 +30,19 @@ const  MovieInfo = () => {
     useEffect(() => {
         movieData()
     },[] )
-           /*<div>
-            const BookInfo = ( { books, addToCart, cart } ) => {
-    
- const {id} = useParams();
- const book = books.find(book =>  +book.id === +id);
- console.log(books)
- console.log(book)
-
- function addBookToCart(book) {
-   addToCart(book)
- }
- 
-
- function bookExistOnCart() {
-    return cart.find((book) => book.id === +id)
- }*/
 
   
- 
-
- return (
+    
+return (
     <div id="__movieInfo">
         <main id="movieInfo__main">
             <div className="container__movieInfo">
                 <div className="row">
                     <div className="movieInfo__selected--top-links">
-                        <Link to="/2" className="movieInfo__selected--link">
+                        <Link to={'/search/'}  className="movieInfo__selected--link">
                             <FontAwesomeIcon icon="fa-arrow-left" className='fa-light' />
                         </Link>
-                        <Link to="/2" className="movieInfo__selected--link">
+                        <Link to={'/search/'} className="movieInfo__selected--link">
                             <h2 className="movieInfo__selected--title--top">Search for more Movies</h2>
                         </Link>
                     </div>
@@ -107,3 +91,6 @@ const  MovieInfo = () => {
 
 
 export default MovieInfo;
+
+
+  

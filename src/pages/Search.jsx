@@ -2,10 +2,11 @@ import React, { useEffect, useState } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import axios from 'axios';
 import { Link, useNavigate, useParams } from 'react-router-dom';
+import Movie from '../components/Movie';
 
-const Search = (  ) => {
+const Search = ( { data, setData} ) => {
     const { query: inputValue } = useParams();
-    const [data, setData] = useState([])
+    /*const [data, setData] = useState([])*/
     const [filter, setFilter] = useState('')
     const [newSearch, setNewSearch] = useState([inputValue])
     const navigate = useNavigate();
@@ -87,23 +88,9 @@ const Search = (  ) => {
             </div>        
             <div className="movie-container">
                   
-              {data.slice(0, 6).map((movie, index) => (
-             
-                <div className="movie-card" key={index} onClick={() => navigate(`/about-movie/${movie.imdbID}/query`)} >
-                
-                    <div className="movie-card__container">
-                        <div className="movie-poster">
-                            <img className="movie-poster--img" src={movie.Poster} alt="movie poster" />
-                        </div>
-                        <div className="movie-poster__info">
-                            <h3 className="movie-title">{movie.Title}</h3>
-                            <h5 className="movie-year">{movie.Year}</h5>
-                            <p className="movie-theatre">IMAX Cinema</p>
-                            <p className="movie-theatre__location">Movie City, USA</p>
-                            <p className="movie-theatre--phone">(800)MOV-IE11</p>
-                        </div>
-                    </div>
-                </div>
+             {data.slice(0, 6).map((movie, index) => (
+                <Movie movie={movie} key={index}/>
+           
           
                 ))}
                 

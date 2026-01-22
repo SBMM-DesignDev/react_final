@@ -1,20 +1,22 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useMemo } from 'react';
 import { useParams, Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import Movie from '../components/Movie';
 
 
 
 
 
-
-const  MovieInfo = ( {inputValue} ) => {
+const  MovieInfo = ( {inputValue, data} ) => {
  
   
     const { imdbID } = useParams();
     const [selectedMovie, setSelectedMovie] = useState([]);
 
-    async function movieData()  {
+   
+
+async function movieData()  {
         if(!imdbID) return;
         try {
             const { data } = await axios.get(`https://omdbapi.com/?apikey=242fafd7&i=${imdbID}`)
@@ -32,7 +34,7 @@ const  MovieInfo = ( {inputValue} ) => {
         movieData()
     },[] )
 
-  
+ 
     
 return (
     <div id="__movieInfo">
@@ -40,7 +42,7 @@ return (
             <div className="container__movieInfo">
                 <div className="row">
                     <div className="movieInfo__selected--top-links">
-                        <Link to={'/search/:query'}  className="movieInfo__selected--link">
+                        <Link to={'/search'}  className="movieInfo__selected--link">
                             <FontAwesomeIcon icon="fa-arrow-left" className='fa-light' />
                         </Link>
                         <Link to={`/search/${inputValue}`} className="movieInfo__selected--link">
@@ -71,7 +73,7 @@ return (
                     </div>
                 </div>
             </div>
-            <div className="movieInfo__container">
+            <div className="container__movieInfo">
                 <div className="row">
                     <div className="movieInfo__selected--top">
                         <h2 className="movieInfo__selected--title--top">
@@ -80,8 +82,15 @@ return (
                     <div />
                     <div className="movieInfo__watch">
                       Movies to Watch
-                           
                     </div>
+                   <div className="movies__recommended">
+                          {data
+                         .filter(movie => +movie.Type === +imdbID.Type)
+                         .slice(0, 4)
+                         .map((movie) => <Movie movie={movie} key={movie.imdbID} />)
+                         }
+                    </div>
+
                 </div>
                 </div>
             </div>
@@ -89,9 +98,23 @@ return (
     </div>
  )
 };
-
+ 
 
 export default MovieInfo;
 
-
+    /*  <div className="books">
+                        {selectedMovie
+                        .filter((movie) => {
+                            if (imdbID) {
+                            // Check for id when on the individual book
+                            // so the same book isnt recommended
+                            return movie.Genre === imdbID.Genre && movie.imdbID != imdbID;
+                            }
+                            
+                        })
+                        .slice(0, 4)
+                        .map((movie) => {
+                            return <Book book={book} key={book.id} />;
+                        })}
+                    </div>*/
   

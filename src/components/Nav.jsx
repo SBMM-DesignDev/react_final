@@ -13,12 +13,12 @@ const navigate = useNavigate();
                 </figure>
                 <ul className="nav__link--list">
                    <li className="nav__link">
-                    <Link to="/" className="
+                    <div onClick={() => navigate("/")} className="
                     nav__link--anchor
                     link__hover-effect
                     link__hover-effect--black
                     ">Home
-                    </Link>
+                    </div>
                     </li>
                    
                     <li className="nav__link">

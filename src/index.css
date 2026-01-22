@@ -287,6 +287,10 @@ HEADER
 SEARCH PAGE
 
 */
+.movies {
+    width: 100%;
+    display: flex;
+}
 
 .search__page--container {
     width: 100%;
@@ -315,12 +319,15 @@ SEARCH PAGE
     margin-right: 8px;
 }
 
-
-
-.movie-card__link ::after{
+.movie-card__skeleton {
+    width: 33%;
+    height: 350px;
+    max-width: 225px;
+    background-color: rgb(219, 217, 217);
+    border-radius: 5px;
+    margin-bottom: 24px;
     
-    
-    
+    margin: 0 8px 24px 0;
 }
 
 .movie-container {
@@ -545,10 +552,11 @@ MOVIES INFO
   margin: 8px 0 24px 0;
 }
 
-.books__recommended {
+.movies__recommended {
+ 
   display: flex;
-  width: 100%;
   flex-wrap: wrap;
+  margin: 0 -24px;
 }
 
 .movieInfo__details {

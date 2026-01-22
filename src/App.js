@@ -8,15 +8,16 @@ import Footer from './components/Footer'
 
 function App() {
   const [inputValue, setInputValue] = useState([])
+  const [data, setData] = useState([])
 
   return (
     <Router>
     <div className="App">
       <Nav />
       <Routes>
-        <Route path='/' element={<Home inputValue={inputValue} setInputValue={setInputValue} />} ></Route>
-        <Route path='/search/:query' element={<Search inputValue={inputValue} />}>{" "} </Route>
-        <Route path='/about-movie/:imdbID/:query' element={<MovieInfo inputValue={inputValue}/>}></Route>
+        <Route path='/' exact element={<Home inputValue={inputValue} setInputValue={setInputValue} />} ></Route>
+        <Route path='/search/:query' element={<Search inputValue={inputValue} data={data} setData={setData} />}>{" "} </Route>
+        <Route path='/about-movie/:imdbID/:query' element={<MovieInfo inputValue={inputValue} data={data}/>}></Route>
       </Routes>
       <Footer />
      

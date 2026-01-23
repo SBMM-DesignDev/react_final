@@ -4,10 +4,10 @@ import axios from 'axios';
 import { Link, useNavigate, useParams } from 'react-router-dom';
 import Movie from '../components/Movie';
 
-const Search = ( { data, setData} ) => {
+const Search = ( { data, setData }  ) => {
     const { query: inputValue } = useParams();
     /*const [data, setData] = useState([])*/
-    const [filter, setFilter] = useState('')
+    const [filteredMovies, setFilteredMovies] = useState(data)
     const [newSearch, setNewSearch] = useState([inputValue])
     const navigate = useNavigate();
     
@@ -16,19 +16,22 @@ const Search = ( { data, setData} ) => {
        
         homePageSearch(newSearch);
     }
+
+   /* function movieSort(event) {
+        renderMovieSort(event)
+       
+    }*/
     
-     const movieSort = (event) =>  {
-        setFilter(event.target.value)
-        renderMovieSort();
-    } 
+   
         
-     const renderMovieSort = () => {
+     function renderMovieSort(filter) {
+       
         if (filter === "EARLIEST") {
-            data.sort((a,b) => b.Year - a.Year);
-        }
-        else if (filter === "LATEST") {
-            data.sort((a,b) => a.Year - b.Year);
-        }
+            setFilteredMovies(filteredMovies.slice().sort((a,b) => Number(a.Year) - Number(b.Year)));
+        };
+        if (filter === "LATEST") {
+            setFilteredMovies(filteredMovies.slice().sort((a,b) => Number(b.Year) - Number(a.Year)));
+        };
     }
 
            async function homePageSearch(searchPageSearch) {
@@ -78,7 +81,7 @@ const Search = ( { data, setData} ) => {
                   <div className="keyword">Search for "{inputValue}"</div>
                     <div className="sort">
                         <label >Sort by Year:</label>
-                        <select  onChange={(event) => movieSort(event) }>
+                        <select  onChange={(event)=> renderMovieSort(event.target.value)}>
                             <option defaultValue="Sort" >Sort</option>
                             <option value="LATEST">Latest Release</option>
                             <option value="EARLIEST">Oldest Release</option>

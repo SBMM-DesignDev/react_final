@@ -3,20 +3,22 @@ import { useNavigate } from 'react-router-dom';
 
 const Movie = ( { movie } ) => {
     const navigate = useNavigate();
-      const [img, setImg] = useState();
-    
-      const mountedRef = useRef(true);
+      const [img, setImg] = useState(null);
+        const mountedRef = useRef(false);
+      
     
       useEffect(() => {
+       mountedRef.current = true;
+
         const image = new Image();
         image.src = movie.Poster;
         image.onload = () => {
             setTimeout(() => {
                 if (mountedRef.current) {
-                    setImg(image);
+                    setImg(image.src);
                    
                 }
-            }, 300);
+            },300);
           /* console.log(img)
            console.log(movie.Poster)*/  
            console.log(img)
@@ -24,7 +26,7 @@ const Movie = ( { movie } ) => {
         return () => {
             mountedRef.current = false;
         }
-      }) 
+      }, [movie.Poster]) 
 
     return ( 
         <div className="movie-card">
@@ -33,7 +35,7 @@ const Movie = ( { movie } ) => {
         <>
             <div className="movie-card__container" onClick={() => navigate(`/about-movie/${movie.imdbID}/query`)}>
                 <div className="movie-poster">
-                    <img className="movie-poster--img" src={movie.Poster} alt="movie poster" />
+                    <img className="movie-poster--img" src={img} alt="movie poster" />
                 </div>
                 <div className="movie-poster__info">
                     <h3 className="movie-title">{movie.Title}</h3>

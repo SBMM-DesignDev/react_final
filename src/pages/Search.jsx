@@ -4,11 +4,10 @@ import axios from 'axios';
 import { Link, useNavigate, useParams } from 'react-router-dom';
 import Movie from '../components/Movie';
 
-const Search = ( { data, setData }  ) => {
+const Search = ( { data: initialData, newSearch, setNewSearch }  ) => {
     const { query: inputValue } = useParams();
-    /*const [data, setData] = useState([])*/
-    const [filteredMovies, setFilteredMovies] = useState(data)
-    const [newSearch, setNewSearch] = useState([inputValue])
+    const [data, setData] = useState(initialData)
+    
     const navigate = useNavigate();
     
    
@@ -17,20 +16,13 @@ const Search = ( { data, setData }  ) => {
         homePageSearch(newSearch);
     }
 
-   /* function movieSort(event) {
-        renderMovieSort(event)
-       
-    }*/
-    
-   
-        
      function renderMovieSort(filter) {
        
         if (filter === "EARLIEST") {
-            setFilteredMovies(filteredMovies.slice().sort((a,b) => Number(a.Year) - Number(b.Year)));
+            setData(data.slice().sort((a,b) => Number(a.Year) - Number(b.Year)));
         };
         if (filter === "LATEST") {
-            setFilteredMovies(filteredMovies.slice().sort((a,b) => Number(b.Year) - Number(a.Year)));
+            setData(data.slice().sort((a,b) => Number(b.Year) - Number(a.Year)));
         };
     }
 

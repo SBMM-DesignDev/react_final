@@ -8,11 +8,12 @@ import Movie from '../components/Movie';
 
 
 
-const  MovieInfo = ( {inputValue, data} ) => {
+const  MovieInfo = ( {inputValue, data, newSearch } ) => {
  
   
     const { imdbID } = useParams();
     const [selectedMovie, setSelectedMovie] = useState([]);
+    const [link, setLink] = useState(true);
 
    
 
@@ -34,6 +35,16 @@ async function movieData()  {
         movieData()
     },[] )
 
+    function backArrowMovieLink() {
+       if(newSearch){
+            'newSearchPresent';
+        }
+        if(inputValue) {
+             'inputValuePresent';
+        }
+        
+        
+    }
  
     
 return (
@@ -42,7 +53,7 @@ return (
             <div className="container__movieInfo">
                 <div className="row">
                     <div className="movieInfo__selected--top-links">
-                        <Link to={'/search'}  className="movieInfo__selected--link">
+                        <Link to={backArrowMovieLink() === 'newSearchPresent' ? `/search/${newSearch}` : `/search/${inputValue}`}  className="movieInfo__selected--link">
                             <FontAwesomeIcon icon="fa-arrow-left" className='fa-light' />
                         </Link>
                         <Link to={`/search/${inputValue}`} className="movieInfo__selected--link">
@@ -71,27 +82,6 @@ return (
                             </div>
                         </div>
                     </div>
-                </div>
-            </div>
-            <div className="container__movieInfo">
-                <div className="row">
-                    <div className="movieInfo__selected--top">
-                        <h2 className="movieInfo__selected--title--top">
-                            Recommended Movies
-                        </h2>
-                    <div />
-                    <div className="movieInfo__watch">
-                      Movies to Watch
-                    </div>
-                   <div className="movies__recommended">
-                          {data
-                         .filter(movie => +movie.Type === +imdbID.Type)
-                         .slice(0, 4)
-                         .map((movie) => <Movie movie={movie} key={movie.imdbID} />)
-                         }
-                    </div>
-
-                </div>
                 </div>
             </div>
         </main>

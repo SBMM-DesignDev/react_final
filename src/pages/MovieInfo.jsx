@@ -8,13 +8,13 @@ import Movie from '../components/Movie';
 
 
 
-const  MovieInfo = ( {inputValue, data, newSearch } ) => {
+const  MovieInfo = ( {inputValue, data, newSearch, goBackLink, path } ) => {
  
   
     const { imdbID } = useParams();
     const [selectedMovie, setSelectedMovie] = useState([]);
-    const [link, setLink] = useState(true);
-
+    
+    /*const [searchValue, setSearchValue] = useState(inputValue)*/
    
 
 async function movieData()  {
@@ -35,16 +35,16 @@ async function movieData()  {
         movieData()
     },[] )
 
-    function backArrowMovieLink() {
-       if(newSearch){
-            'newSearchPresent';
+    function linkBack() {
+           return path ? `./search/${inputValue}` : `./search/${newSearch}`
         }
-        if(inputValue) {
-             'inputValuePresent';
-        }
+
+    useEffect(() => {
         
-        
-    }
+    }, [path] )
+
+ 
+  
  
     
 return (
@@ -53,10 +53,10 @@ return (
             <div className="container__movieInfo">
                 <div className="row">
                     <div className="movieInfo__selected--top-links">
-                        <Link to={backArrowMovieLink() === 'newSearchPresent' ? `/search/${newSearch}` : `/search/${inputValue}`}  className="movieInfo__selected--link">
+                        <Link to={linkBack}  className="movieInfo__selected--link">
                             <FontAwesomeIcon icon="fa-arrow-left" className='fa-light' />
                         </Link>
-                        <Link to={`/search/${inputValue}`} className="movieInfo__selected--link">
+                        <Link to={`${goBackLink}`} className="movieInfo__selected--link">
                             <h2 className="movieInfo__selected--title--top">Search for more Movies</h2>
                         </Link>
                     </div>

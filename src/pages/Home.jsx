@@ -19,7 +19,7 @@ import Tate from '../Assets/tate_theatre.jpg'
 import Camera from '../Assets/rows_seats_camera_light.png'
 
 
-const Home = ( { inputValue, setInputValue }) => {
+const Home = ( { inputValue, setInputValue, goBackLink }) => {
     const slides = [
         {url:{Alemeda}, title:'Alameda_Theatre'},
         {url:{SeatsBlueLights}, title:'BlackSeatsBlueLights'},
@@ -71,7 +71,7 @@ const Home = ( { inputValue, setInputValue }) => {
                 type="text" 
                 onChange={(event) => setInputValue(event.target.value) } 
                 placeholder="Enter Movie Title"></input>
-                <Link to={`/search/${inputValue}`}>
+                <Link to={`/search/${inputValue}`} onClick={goBackLink}>
                     <button className="home__btn btn__Enjoy" >Enjoy</button>
                 </Link><br/>
                 <input className="home__input home__header--zip-input" type="number" placeholder="Enter Zip Code" disabled></input>

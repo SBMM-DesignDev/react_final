@@ -1,6 +1,6 @@
 import React from 'react'
 import logo from "../Assets/film_tape.png"
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 const Nav = () => {
 const navigate = useNavigate();
@@ -22,20 +22,20 @@ const navigate = useNavigate();
                     </li>
                    
                     <li className="nav__link">
-                        <a className="
+                        <div className="
                     nav__link--anchor
                     link__hover-effect
                     link__hover-effect--black
                     link
-                    " disabled>Movie List</a>
+                    " disabled>Movie List</div>
                     </li>
                     <li className="nav__link" >
-                        <a className="
+                        <div className="
                     nav__link--anchor
                     link__hover-effect
                     link__hover-effect--button
                     link
-                    " disabled>Contact</a>
+                    " disabled>Contact</div>
                     </li>
                 </ul>
             </div>

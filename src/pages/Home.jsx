@@ -44,7 +44,7 @@ const Home = ( { inputValue, setInputValue, goBackLink }) => {
         height: "400px",
        margin: "0 50px 24px 50px",
         borderRadius: "10px",
-        margin: "0 auto",
+        /*margin: "0 auto",*/
  }
 
   return (<>

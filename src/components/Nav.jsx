@@ -26,14 +26,16 @@ const navigate = useNavigate();
                     nav__link--anchor
                     link__hover-effect
                     link__hover-effect--black
-                    ">Movie List</a>
+                    link
+                    " disabled>Movie List</a>
                     </li>
                     <li className="nav__link" >
                         <a className="
                     nav__link--anchor
                     link__hover-effect
                     link__hover-effect--button
-                    ">Contact</a>
+                    link
+                    " disabled>Contact</a>
                     </li>
                 </ul>
             </div>

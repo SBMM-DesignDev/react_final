@@ -1,18 +1,16 @@
 import React, { useEffect, useState, useMemo } from 'react';
-import { useParams, Link, useNavigate } from 'react-router-dom';
+import { useParams, Link} from 'react-router-dom';
 import axios from 'axios';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import Movie from '../components/Movie';
 
 
-
-
-
-const  MovieInfo = ( {inputValue, data, newSearch, goBackLink, path } ) => {
+const  MovieInfo = () => {
  
   
     const { imdbID } = useParams();
     const [selectedMovie, setSelectedMovie] = useState([]);
+    const storedLink = localStorage.getItem('link')
+    const linkBack = storedLink ? storedLink : '/'
     
     /*const [searchValue, setSearchValue] = useState(inputValue)*/
    
@@ -35,28 +33,16 @@ async function movieData()  {
         movieData()
     },[] )
 
-    function linkBack() {
-           return path ? `./search/${inputValue}` : `./search/${newSearch}`
-        }
-
-    useEffect(() => {
-        
-    }, [path] )
-
- 
-  
- 
-    
 return (
     <div id="__movieInfo">
         <main id="movieInfo__main">
             <div className="container__movieInfo">
-                <div className="row">
+                <div className="row__movieInfo">
                     <div className="movieInfo__selected--top-links">
-                        <Link to={linkBack}  className="movieInfo__selected--link">
+                        <Link to={storedLink ? `/search/${linkBack}`: linkBack}  className="movieInfo__selected--link">
                             <FontAwesomeIcon icon="fa-arrow-left" className='fa-light' />
                         </Link>
-                        <Link to={`${goBackLink}`} className="movieInfo__selected--link">
+                        <Link to={storedLink ? `/search/${linkBack}`: linkBack} className="movieInfo__selected--link">
                             <h2 className="movieInfo__selected--title--top">Search for more Movies</h2>
                         </Link>
                     </div>

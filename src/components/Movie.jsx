@@ -38,11 +38,11 @@ const Movie = ( { movie } ) => {
                     <img className="movie-poster--img" src={img} alt="movie poster" />
                 </div>
                 <div className="movie-poster__info">
-                    <h3 className="movie-title">{movie.Title}</h3>
-                    <h5 className="movie-year">{movie.Year}</h5>
-                    <p className="movie-theatre">IMAX Cinema</p>
-                    <p className="movie-theatre__location">Movie City, USA</p>
-                    <p className="movie-theatre--phone">(800)MOV-IE11</p>
+                    <h3 className="movie__info movie-title">{movie.Title}</h3>
+                    <h5 className="movie__info movie-year">{movie.Year}</h5>
+                    <p className="movie__info movie-theatre">IMAX Cinema</p>
+                    <p className="movie__info movie-theatre__location">Movie City, USA</p>
+                    <p className="movie__info movie-theatre--phone">(800)MOV-IE11</p>
                 </div>
             </div>
                     

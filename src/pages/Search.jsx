@@ -1,19 +1,19 @@
 import React, { useEffect, useState } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import axios from 'axios';
-import { Link, useNavigate, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import Movie from '../components/Movie';
 
 const Search = ( { data: initialData, newSearch, setNewSearch }  ) => {
     const { query: inputValue } = useParams();
     const [data, setData] = useState(initialData)
     
-    const navigate = useNavigate();
     
-   
-    function newQuerySearchPage() {
-       
+     function newQuerySearchPage() {
+        if(!newSearch) return
         homePageSearch(newSearch);
+        localStorage.setItem('link', newSearch)
+
     }
 
      function renderMovieSort(filter) {
@@ -51,6 +51,7 @@ const Search = ( { data: initialData, newSearch, setNewSearch }  ) => {
                 <h1 className="header__title">
                     America's leading Movie Directory
                 </h1>
+                <div className="header__title--underline"></div>
                 <h3 className="header__sub-title"> 
                     Search movies, showtimes and theatres near you
                 </h3>
@@ -72,7 +73,7 @@ const Search = ( { data: initialData, newSearch, setNewSearch }  ) => {
             <div className="movie__container--filters">
                   <div className="keyword">Search for "{inputValue}"</div>
                     <div className="sort">
-                        <label >Sort by Year:</label>
+                        <label >Sort by Year: </label>
                         <select  onChange={(event)=> renderMovieSort(event.target.value)}>
                             <option defaultValue="Sort" >Sort</option>
                             <option value="LATEST">Latest Release</option>

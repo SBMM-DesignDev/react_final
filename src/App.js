@@ -15,10 +15,8 @@ function App() {
    function goBackLink() {
    
     localStorage.setItem('link', inputValue)
-    setPath(localStorage.getItem('link'))
-/*const destination = path === 'link' ? `./search/${inputValue}` : `./search/${newSearch}`*/
   }
-console.log(path)
+
 
 
 

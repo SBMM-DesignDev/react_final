@@ -43,21 +43,13 @@ const Home = ( { inputValue, setInputValue, goBackLink }) => {
         width: "50%",
         height: "400px",
        margin: "0 50px 24px 50px",
-        /*border: "red 1px solid",*/
         borderRadius: "10px",
         margin: "0 auto",
  }
 
-   /* const inputChange = (event) => {
-         setInputValue(event.target.value)
-         console.log(inputValue)
- }*/
-    
-
-   
-
-    return (<>
+  return (<>
         <h1 className="home__header--title">America's leading Movie Directory</h1>
+        <div className="home__header--title-underline"></div>
          <div className="home__header--sub-title-wrapper">
          <h4 className="home__header--sub-title">Make your movie going experience the most enjoyable!!!</h4>
         </div> 
@@ -82,8 +74,6 @@ const Home = ( { inputValue, setInputValue, goBackLink }) => {
                 <ImageSlider  slides={slides}/>
             </div>
         </div>
-
-         
     </>
     )
 }

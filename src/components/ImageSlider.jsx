@@ -5,16 +5,16 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 const ImageSlider = ( { slides, interval = 3000 } ) => {
     const [currentIndex, setCurrentIndex] = useState(0);
    
-    const autoSlide = () => {
+    function autoSlide() {
         setCurrentIndex((prevIndex) => (prevIndex + 1) % slides.length);
     }
 
     useEffect (() => {
         const slideInterval = setInterval(autoSlide, interval);
-
+        autoSlide()
         return () => clearInterval(slideInterval);
 
-    }, [currentIndex, interval]);
+    }, []);
     
 
     console.log(slides)

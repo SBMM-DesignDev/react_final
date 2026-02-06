@@ -15,7 +15,10 @@ const  MovieInfo = () => {
     /*const [searchValue, setSearchValue] = useState(inputValue)*/
    
 
-async function movieData()  {
+
+
+    useEffect(() => {
+        async function movieData()  {
         if(!imdbID) return;
         try {
             const { data } = await axios.get(`https://omdbapi.com/?apikey=242fafd7&i=${imdbID}`)
@@ -28,8 +31,6 @@ async function movieData()  {
         }
        
     }
-
-    useEffect(() => {
         movieData()
     },[] )
 

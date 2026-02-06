@@ -42,7 +42,7 @@ const Search = ( { data: initialData, newSearch, setNewSearch }  ) => {
     useEffect(() => {
          homePageSearch();
         
-    }, [data] )
+    }, [homePageSearch] )
 
    
     return ( <> 

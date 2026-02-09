@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useCallback } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
@@ -26,7 +26,7 @@ const Search = ( { data: initialData, newSearch, setNewSearch }  ) => {
         };
     }
 
-           async function homePageSearch(searchPageSearch) {
+           const homePageSearch = useCallback(async (searchPageSearch) => {
                 if(!inputValue) return;
                 try {
                 const response = await axios.get(`https://omdbapi.com/?apikey=242fafd7&s=${searchPageSearch || inputValue}`)
@@ -37,10 +37,10 @@ const Search = ( { data: initialData, newSearch, setNewSearch }  ) => {
                     console.error('Error fetching movies:', error);
                     setData([])
                 }
-    }
+    },[inputValue])
 
     useEffect(() => {
-         homePageSearch();
+        homePageSearch()
         
     }, [homePageSearch] )
 

@@ -26,7 +26,7 @@ const Movie = ( { movie } ) => {
         return () => {
             mountedRef.current = false;
         }
-      }, [img]) 
+      }, [img, movie.Poster]) 
 
     return ( 
         <div className="movie-card">

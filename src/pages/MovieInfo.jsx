@@ -32,7 +32,7 @@ const  MovieInfo = () => {
        
     }
         movieData()
-    },[] )
+    },[imdbID] )
 
 return (
     <div id="__movieInfo">
